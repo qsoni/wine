@@ -6,15 +6,15 @@ import collections
 
 if __name__ == '__main__':
 
-    excel_data_df = pandas.read_excel('wine.xlsx', sheet_name='Лист1',  na_values= None , keep_default_na=False).to_dict(orient='records')
+    drinks = pandas.read_excel('wine.xlsx', sheet_name='Лист1',  na_values= None , keep_default_na=False).to_dict(orient='records')
 
     now = datetime.datetime.now()
     year_of_foundation = 1920
     year = now.year
 
-    drinks = collections.defaultdict(list)
+    structured_drinks = collections.defaultdict(list)
 
-    for wine in excel_data_df:
+    for wine in drinks :
         drinks[wine ['Категория']].append(wine)
 
 
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     template = env.get_template('template.html')
     rendered_page = template.render(
         years=year-year_of_foundation,
-        drinks=drinks
+        drinks=structured_drinks
     )
 
     with open('index.html', 'w', encoding="utf8") as file:
