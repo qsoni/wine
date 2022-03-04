@@ -1,12 +1,14 @@
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-from jinja2 import Environment, FileSystemLoader, select_autoescape
-import datetime
-import pandas
 import collections
+import datetime
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+import pandas
+
 
 if __name__ == '__main__':
 
-    drinks = pandas.read_excel('wine.xlsx', sheet_name='Лист1',  na_values= None , keep_default_na=False).to_dict(orient='records')
+    drinks = pandas.read_excel('wine.xlsx', sheet_name='Лист1', na_values= None, keep_default_na=False).to_dict(orient='records')
 
     now = datetime.datetime.now()
     year_of_foundation = 1920
@@ -14,8 +16,8 @@ if __name__ == '__main__':
 
     structured_drinks = collections.defaultdict(list)
 
-    for wine in drinks :
-        drinks[wine ['Категория']].append(wine)
+    for wine in drinks:
+        structured_drinks[wine ['Категория']].append(wine)
 
 
     env = Environment(
