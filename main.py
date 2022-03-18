@@ -6,7 +6,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 import pandas
 from dotenv import load_dotenv
 
-if __name__ == '__main__':
+def main():
     load_dotenv()
     production_file_path = os.getenv('PATH_TO_FILE')
     drinks = pandas.read_excel(production_file_path, sheet_name='Лист1', na_values= None, keep_default_na=False).to_dict(orient='records')
@@ -32,3 +32,6 @@ if __name__ == '__main__':
         file.write(rendered_page)
     server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
     server.serve_forever()
+
+if __name__ == '__main__':
+    main()
