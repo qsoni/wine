@@ -1,10 +1,12 @@
 import collections
 import datetime
-from http.server import HTTPServer, SimpleHTTPRequestHandler
 import os
-from jinja2 import Environment, FileSystemLoader, select_autoescape
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+
 import pandas
 from dotenv import load_dotenv
+from jinja2 import Environment, FileSystemLoader, select_autoescape
+
 
 def main():
     load_dotenv()
